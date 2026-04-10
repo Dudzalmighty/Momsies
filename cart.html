@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Cart — Momsies</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            height: 100%;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            font-family: 'Inter', sans-serif;
+            background: #fefaf5;
+        }
+
+        .cart-count {
+            background-color: #b45f4b;
+            color: white;
+            border-radius: 50%;
+            padding: 2px 8px;
+            font-size: 12px;
+            margin-left: 5px;
+            display: none;
+        }
+
+        .user-greeting {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .user-name {
+            font-weight: 500;
+            color: #b45f4b;
+        }
+
+        .empty-cart {
+            text-align: center;
+            padding: 60px 20px;
+            background: white;
+            border-radius: 32px;
+            margin: 20px 0;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.03);
+        }
+
+        .empty-cart i {
+            font-size: 4rem;
+            color: #d48f7b;
+            margin-bottom: 20px;
+        }
+
+        .cart-item-img {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            border-radius: 16px;
+        }
+
+        .quantity-input {
+            width: 70px;
+            padding: 8px;
+            border-radius: 20px;
+            border: 1px solid #f7c9c0;
+            text-align: center;
+        }
+
+        .cart-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            border-radius: 28px;
+            overflow: hidden;
+            margin: 20px 0;
+        }
+
+        .cart-table th,
+        .cart-table td {
+            padding: 16px;
+            text-align: left;
+            border-bottom: 1px solid #f7c9c0;
+        }
+
+        .cart-table th {
+            background: #f5ede6;
+            color: #b45f4b;
+            font-weight: 600;
+        }
+
+        .cart-summary {
+            background: #f5ede6;
+            border-radius: 28px;
+            padding: 24px;
+            margin-top: 24px;
+            margin-bottom: 40px;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 24px;
+            flex: 1;
+        }
+
+        footer {
+            background: #2d2a24;
+            color: #e6dbd2;
+            padding: 48px 0 24px;
+            border-radius: 40px 40px 0 0;
+            margin-top: auto;
+        }
+
+        .footer-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 32px;
+        }
+
+        .navbar {
+            background: rgba(255, 249, 242, 0.96);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            padding: 16px 0;
+            border-bottom: 1px solid #f7c9c0;
+        }
+
+        .nav-flex {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .logo h1 {
+            font-size: 1.9rem;
+            color: #b45f4b;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 28px;
+            list-style: none;
+            flex-wrap: wrap;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #2d2a24;
+            font-weight: 500;
+        }
+
+        .btn-primary {
+            background: #d48f7b;
+            color: white;
+            padding: 12px 28px;
+            border-radius: 40px;
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 1px solid #b45f4b;
+            color: #b45f4b;
+            padding: 8px 20px;
+            border-radius: 40px;
+            cursor: pointer;
+        }
+
+        .section-title {
+            text-align: center;
+            font-family: 'Playfair Display', serif;
+            font-size: 2.3rem;
+            color: #b45f4b;
+            margin: 30px 0 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="navbar">
+        <div class="container nav-flex">
+            <div class="logo">
+                <h1>🌸 Momsies</h1>
+                <p>nurture • comfort • joy</p>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="category.html">Packages</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="cart.html">Cart 🛒 <span class="cart-count" id="cartCount">0</span></a></li>
+                <li><a href="account.html">Account</a></li>
+            </ul>
+            <div id="authSection"></div>
+        </div>
+    </div>
+
+    <div class="container">
+        <h1 class="section-title">🛒 Your Shopping Cart</h1>
+        <div id="cartContainer"></div>
+    </div>
+
+    <footer>
+        <div class="container footer-grid">
+            <div><i class="fas fa-leaf"></i> Momsies — New Kingston, Jamaica<br>📧 hello@momsiesja.com</div>
+            <div><i class="fab fa-instagram"></i> @momsies_ja</div>
+            <div>© 2026 Momsies — with tenderness</div>
+        </div>
+    </footer>
+
+    <script src="cart.js"></script>
+    <script>
+        // Display cart contents
+        function displayCart() {
+            const cartContainer = document.getElementById('cartContainer');
+
+            // Get cart from localStorage
+            let cart = [];
+            const savedCart = localStorage.getItem('momsiesCart');
+
+            if (savedCart) {
+                try {
+                    cart = JSON.parse(savedCart);
+                } catch (e) {
+                    cart = [];
+                }
+            }
+
+            // If cart is empty
+            if (!cart || cart.length === 0) {
+                cartContainer.innerHTML = `
+                    <div class="empty-cart">
+                        <i class="fas fa-shopping-bag"></i>
+                        <h3>Your cart is empty</h3>
+                        <p>Looks like you haven't added any packages yet.</p>
+                        <a href="category.html"><button class="btn-primary" style="margin-top: 20px;">🌸 Shop Our Packages 🌸</button></a>
+                    </div>
+                `;
+                updateCartCount();
+                return;
+            }
+
+            // Build cart table
+            let cartHtml = `
+                <table class="cart-table">
+                    <thead>
+                        <tr><th>Product</th><th>Price</th><th>Quantity</th><th>Subtotal</th><th></th></tr>
+                    </thead>
+                    <tbody>
+            `;
+
+            let total = 0;
+
+            for (let i = 0; i < cart.length; i++) {
+                const item = cart[i];
+                const subtotal = item.price * item.quantity;
+                total += subtotal;
+
+                cartHtml += `
+                    <tr>
+                        <td style="display: flex; align-items: center; gap: 15px;">
+                            <img src="${item.image}" alt="${item.name}" class="cart-item-img" onerror="this.src='https://placehold.co/100x100/f7c9c0/b45f4b?text=Product'">
+                            <strong>${item.name}</strong>
+                          </td>
+                          <td>JMD ${item.price.toLocaleString()}</td>
+                          <td>
+                            <input type="number" value="${item.quantity}" min="1" class="quantity-input" onchange="updateQuantityInCart('${item.id}', this.value)">
+                          </td>
+                          <td>JMD ${subtotal.toLocaleString()}</td>
+                          <td><button class="btn-outline" onclick="removeFromCartItem('${item.id}')">Remove</button></td>
+                    </tr>
+                `;
+            }
+
+            const shipping = total > 7000 ? 0 : 500;
+            const grandTotal = total + shipping;
+
+            cartHtml += `
+                    </tbody>
+                </table>
+                
+                <div class="cart-summary">
+                    <h3>Order Summary</h3>
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 12px;">
+                        <span>Subtotal:</span>
+                        <span>JMD ${total.toLocaleString()}</span>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 12px;">
+                        <span>Shipping:</span>
+                        <span>${shipping === 0 ? 'FREE' : 'JMD ' + shipping.toLocaleString()}</span>
+                    </div>
+                    ${total < 7000 ? '<p style="font-size: 0.8rem; color: #d48f7b; margin-bottom: 12px;">✨ Add JMD ' + (7000 - total).toLocaleString() + ' more for FREE shipping ✨</p>' : '<p style="font-size: 0.8rem; color: #b0bea9; margin-bottom: 12px;">🎉 You qualify for FREE shipping! 🎉</p>'}
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 12px; border-top: 1px solid #f7c9c0; padding-top: 12px;">
+                        <span><strong>Total:</strong></span>
+                        <span><strong>JMD ${grandTotal.toLocaleString()}</strong></span>
+                    </div>
+                    <a href="checkout.html"><button class="btn-primary" style="width: 100%; margin-top: 16px;">Proceed to Checkout →</button></a>
+                    <button onclick="clearCartItems()" class="btn-outline" style="width: 100%; margin-top: 12px;">Clear Cart</button>
+                    <a href="category.html" style="display: block; text-align: center; margin-top: 16px;">← Continue Shopping</a>
+                </div>
+            `;
+
+            cartContainer.innerHTML = cartHtml;
+            updateCartCount();
+        }
+
+        // Remove item
+        function removeFromCartItem(productId) {
+            let cart = JSON.parse(localStorage.getItem('momsiesCart')) || [];
+            cart = cart.filter(item => item.id !== productId);
+            localStorage.setItem('momsiesCart', JSON.stringify(cart));
+            displayCart();
+            updateCartCount();
+        }
+
+        // Update quantity
+        function updateQuantityInCart(productId, newQuantity) {
+            let cart = JSON.parse(localStorage.getItem('momsiesCart')) || [];
+            const item = cart.find(item => item.id === productId);
+            if (item) {
+                newQuantity = parseInt(newQuantity);
+                if (newQuantity <= 0) {
+                    cart = cart.filter(i => i.id !== productId);
+                } else {
+                    item.quantity = newQuantity;
+                }
+                localStorage.setItem('momsiesCart', JSON.stringify(cart));
+                displayCart();
+                updateCartCount();
+            }
+        }
+
+        // Clear cart
+        function clearCartItems() {
+            localStorage.removeItem('momsiesCart');
+            displayCart();
+            updateCartCount();
+        }
+
+        // Update cart count badge
+        function updateCartCount() {
+            const cart = JSON.parse(localStorage.getItem('momsiesCart')) || [];
+            const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+            const cartCountSpan = document.getElementById('cartCount');
+            if (cartCountSpan) {
+                if (totalItems > 0) {
+                    cartCountSpan.textContent = totalItems;
+                    cartCountSpan.style.display = 'inline-flex';
+                } else {
+                    cartCountSpan.style.display = 'none';
+                }
+            }
+        }
+
+        // Auth functions
+        function updateAuthSection() {
+            const authSection = document.getElementById('authSection');
+            if (!authSection) return;
+            const loggedInUser = localStorage.getItem('momsiesLoggedInUser');
+
+            if (loggedInUser) {
+                const user = JSON.parse(loggedInUser);
+                authSection.innerHTML = '<div class="user-greeting"><span class="user-name"><i class="fas fa-heart"></i> Hello, ' + user.name + '!</span><button class="btn-outline" onclick="handleLogout()" style="padding: 6px 16px;">Sign Out</button></div>';
+            } else {
+                authSection.innerHTML = '<a href="login.html"><button class="btn-primary"><i class="fas fa-heart"></i> Sign In</button></a>';
+            }
+        }
+
+        function handleLogout() {
+            localStorage.removeItem('momsiesLoggedInUser');
+            alert('🌸 You have been logged out. Come back soon!');
+            updateAuthSection();
+            updateCartCount();
+            displayCart();
+        }
+
+        // Make functions global
+        window.removeFromCartItem = removeFromCartItem;
+        window.updateQuantityInCart = updateQuantityInCart;
+        window.clearCartItems = clearCartItems;
+        window.handleLogout = handleLogout;
+
+        // Page load
+        document.addEventListener('DOMContentLoaded', function () {
+            updateAuthSection();
+            displayCart();
+        });
+    </script>
+
+    <!-- AI Chatbot Script -->
+    <script>
+        // Momsies AI Chatbot - 24/7 Customer Support
+        (function () {
+            // Create chatbot HTML
+            const chatbotHTML = `
+            <div class="chat-button" id="chatButton">
+                <i class="fas fa-comment-dots"></i>
+            </div>
+            <div class="chat-window" id="chatWindow">
+                <div class="chat-header">
+                    <h3><i class="fas fa-robot"></i> Momsie AI Assistant</h3>
+                    <button class="close-chat" id="closeChat">✕</button>
+                </div>
+                <div class="chat-messages" id="chatMessages">
+                    <div class="message bot-message">
+                        🌸 Hello Mama! I'm Momsie AI, your 24/7 virtual assistant.<br>
+                        I can help you with:<br>
+                        📦 Package details<br>
+                        🚚 Shipping & delivery<br>
+                        🔄 Returns & exchanges<br>
+                        🎁 Customization options<br><br>
+                        What can I help you with today?
+                    </div>
+                </div>
+                <div class="quick-replies" id="quickReplies">
+                    <button class="quick-reply-btn" data-question="What packages do you offer?">📦 Packages</button>
+                    <button class="quick-reply-btn" data-question="How long does shipping take?">🚚 Shipping</button>
+                    <button class="quick-reply-btn" data-question="What is your return policy?">🔄 Returns</button>
+                    <button class="quick-reply-btn" data-question="Can I customize a package?">🎁 Customize</button>
+                </div>
+                <div class="chat-input-area">
+                    <input type="text" id="chatInput" placeholder="Type your message..." autocomplete="off">
+                    <button id="sendMessage"><i class="fas fa-paper-plane"></i></button>
+                </div>
+            </div>
+        `;
+
+            // Add chatbot to page
+            document.body.insertAdjacentHTML('beforeend', chatbotHTML);
+
+            // Get elements
+            const chatButton = document.getElementById('chatButton');
+            const chatWindow = document.getElementById('chatWindow');
+            const closeChat = document.getElementById('closeChat');
+            const chatInput = document.getElementById('chatInput');
+            const sendBtn = document.getElementById('sendMessage');
+            const chatMessages = document.getElementById('chatMessages');
+
+            // AI Response Database
+            const responses = {
+                // Greetings
+                'hello': '🌸 Hello Mama! Welcome to Momsies. How can I support you today?',
+                'hi': '🌸 Hi there! I\'m so happy you\'re here. Need help finding something?',
+                'hey': '🌸 Hey Mama! What can I do for you today?',
+
+                // Packages
+                'what packages do you offer': '🌸 We offer 5 main care packages:\n📦 Pregnancy Glow - JMD 4,500\n🏥 Hospital Bag Essentials - JMD 3,800\n💖 Postpartum Recovery - JMD 5,200\n👶 Newborn Nest - JMD 6,100\n🎁 Custom Bundle - From JMD 3,800\n\nWhich one interests you?',
+                'tell me about packages': '🌸 Our packages are curated for each stage of motherhood. We have Pregnancy, Hospital Bag, Postpartum, Newborn, and Custom bundles. Would you like details on a specific one?',
+                'pregnancy package': '🌸 The Pregnancy Glow package includes skincare, comfort goods, and everyday essentials for expecting mamas. Price: JMD 4,500. Want me to help you add it to cart?',
+                'postpartum package': '🌸 The Postpartum Recovery package includes healing sprays, sitz bath, nursing pads, belly balm, and a journal. Price: JMD 5,200. It\'s our best seller!',
+                'newborn package': '🌸 The Newborn Nest includes diapers, wipes, organic cotton clothing, and feeding supplies. Price: JMD 6,100. Perfect for baby\'s first months!',
+                'hospital bag': '🌸 The Hospital Bag Essentials package has everything you need for labor and delivery day. Price: JMD 3,800.',
+                'custom bundle': '🌸 You can build your own package starting from JMD 3,800! Just click "Custom Bundle" on our shop page and pick the items you need.',
+
+                // Shipping
+                'how long does shipping take': '🚚 We process orders within 24-48 hours. Delivery takes 2-4 business days across Jamaica. You\'ll get a tracking link via email!',
+                'shipping cost': '🚚 Shipping is JMD 500 flat rate island-wide. Orders over JMD 7,000 get FREE shipping!',
+                'delivery': '🚚 We partner with Tara and other reliable couriers for door-to-door delivery across all parishes in Jamaica.',
+                'free shipping': '🎉 Yes! Spend JMD 7,000 or more and shipping is FREE!',
+
+                // Returns
+                'return policy': '🔄 Due to the nature of our products, we don\'t offer refunds after delivery. But we do offer exchanges or store credit for damaged or incorrect items within 14 days.',
+                'exchange': '🔄 For exchanges, please email us at hello@momsiesja.com within 14 days with photos of the item. We\'ll arrange store credit or replacement.',
+                'damaged item': '😟 Oh no! If your package arrived damaged, please contact us within 48 hours with photos. We\'ll send a replacement right away!',
+
+                // Customization
+                'can i customize': '🎁 Absolutely! Our "Custom Bundle" option lets you pick exactly what you need. Just visit our shop and click "Build Yours"!',
+                'personalized': '🎁 Yes! You can add a handwritten gift note at checkout. Perfect for baby showers or push presents!',
+
+                // Account
+                'create account': '📝 Click "Sign In" at the top right, then select "Create Account". You\'ll need a valid email address with @ symbol.',
+                'login': '🔐 Click the "Sign In" button in the top right corner. Use the email and password you registered with.',
+                'forgot password': '📧 No worries! Email us at hello@momsiesja.com and we\'ll help you reset your password.',
+
+                // Payment
+                'payment methods': '💳 We accept Credit Cards, PayPal, Bank Transfers, and Cash on Delivery. All payments are secure and encrypted!',
+                'secure payment': '🔒 Yes! Our checkout is fully encrypted and secure. Your payment information is safe with us.',
+
+                // General
+                'thank you': '🌸 You\'re so welcome, Mama! We\'re honored to support you. 💕',
+                'thanks': '🌸 Always here for you! Have a beautiful day, Mama!',
+                'bye': '🌸 Bye for now, Mama! Come back anytime. Sending you love! 💕',
+                'help': '🌸 I can help with:\n• Package details\n• Shipping & delivery\n• Returns & exchanges\n• Customization\n• Account questions\n\nWhat would you like to know?',
+            };
+
+            // Default response
+            const defaultResponse = '🌸 I\'m still learning, Mama! For specific questions, please email hello@momsiesja.com or call +1 (876) 555-MAMA. Our human team is here for you 9am-6pm! 💕';
+
+            // Function to get AI response
+            function getResponse(userMessage) {
+                const lowerMsg = userMessage.toLowerCase().trim();
+
+                // Check for exact matches first
+                for (const [key, response] of Object.entries(responses)) {
+                    if (lowerMsg.includes(key)) {
+                        return response;
+                    }
+                }
+
+                // Check for keywords
+                if (lowerMsg.includes('price') || lowerMsg.includes('cost')) {
+                    return '💰 Our packages range from JMD 3,800 to JMD 6,100. Which package are you interested in?';
+                }
+                if (lowerMsg.includes('discount') || lowerMsg.includes('sale')) {
+                    return '🎉 We offer seasonal promotions and first-time buyer discounts! Sign up for our newsletter to stay updated.';
+                }
+                if (lowerMsg.includes('gift')) {
+                    return '🎁 Our care packages make wonderful baby shower gifts! You can add a personalized note at checkout for free.';
+                }
+                if (lowerMsg.includes('track')) {
+                    return '📦 You\'ll receive a tracking link via email once your order ships. You can also check your order status in your Account dashboard.';
+                }
+
+                return defaultResponse;
+            }
+
+            // Add message to chat
+            function addMessage(text, isUser) {
+                const messageDiv = document.createElement('div');
+                messageDiv.className = `message ${isUser ? 'user-message' : 'bot-message'}`;
+                messageDiv.innerHTML = text.replace(/\n/g, '<br>');
+                chatMessages.appendChild(messageDiv);
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+            }
+
+            // Show typing indicator
+            function showTyping() {
+                const typingDiv = document.createElement('div');
+                typingDiv.className = 'typing-indicator';
+                typingDiv.id = 'typingIndicator';
+                typingDiv.innerHTML = '<span></span><span></span><span></span>';
+                chatMessages.appendChild(typingDiv);
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+            }
+
+            // Hide typing indicator
+            function hideTyping() {
+                const typing = document.getElementById('typingIndicator');
+                if (typing) typing.remove();
+            }
+
+            // Send user message and get response
+            function sendUserMessage() {
+                const message = chatInput.value.trim();
+                if (!message) return;
+
+                addMessage(message, true);
+                chatInput.value = '';
+
+                showTyping();
+
+                setTimeout(() => {
+                    hideTyping();
+                    const response = getResponse(message);
+                    addMessage(response, false);
+                }, 800);
+            }
+
+            // Quick reply handler
+            function handleQuickReply(question) {
+                addMessage(question, true);
+                showTyping();
+                setTimeout(() => {
+                    hideTyping();
+                    const response = getResponse(question);
+                    addMessage(response, false);
+                }, 600);
+            }
+
+            // Event listeners
+            chatButton.addEventListener('click', () => {
+                chatWindow.style.display = 'flex';
+                chatButton.style.display = 'none';
+                chatInput.focus();
+            });
+
+            closeChat.addEventListener('click', () => {
+                chatWindow.style.display = 'none';
+                chatButton.style.display = 'flex';
+            });
+
+            sendBtn.addEventListener('click', sendUserMessage);
+            chatInput.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') sendUserMessage();
+            });
+
+            // Quick reply buttons
+            document.querySelectorAll('.quick-reply-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const question = btn.getAttribute('data-question');
+                    handleQuickReply(question);
+                });
+            });
+
+            // Auto-open chat after 10 seconds on first visit
+            setTimeout(() => {
+                if (!localStorage.getItem('chatOpened')) {
+                    localStorage.setItem('chatOpened', 'true');
+                    chatWindow.style.display = 'flex';
+                    chatButton.style.display = 'none';
+                }
+            }, 10000);
+        })();
+    </script>
+</body>
+
+</html>
