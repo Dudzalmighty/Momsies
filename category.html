@@ -34,8 +34,6 @@
         .reset-btn { background: transparent; border: 1px solid #d48f7b; color: #d48f7b; padding: 8px 18px; border-radius: 30px; cursor: pointer; }
         .reset-btn:hover { background: #d48f7b; color: white; }
         .results-count { text-align: center; margin: 20px 0; color: #7e6a5e; font-size: 0.9rem; }
-        .no-results { text-align: center; padding: 60px 20px; background: white; border-radius: 32px; }
-        .no-results i { font-size: 3rem; color: #d48f7b; margin-bottom: 16px; }
     </style>
 </head>
 <body>
@@ -88,52 +86,58 @@
         <div class="results-count" id="resultsCount"></div>
 
         <div class="product-grid" id="productGrid">
+            <!-- Pregnancy Glow - Using your original image name -->
             <div class="product-card" data-name="Pregnancy Glow Package" data-category="pregnancy" data-price="4500">
-                <img src="pregnancy-glow.jpg" alt="Pregnancy care package" class="product-img" onerror="this.src='https://placehold.co/400x300/f7c9c0/b45f4b?text=Pregnancy'">
+                <img src="Pregnancy Glow (inside box).jpg.webp" alt="Pregnancy care package" class="product-img" onerror="this.src='https://placehold.co/400x300/f7c9c0/b45f4b?text=Pregnancy'">
                 <h3>Pregnancy Glow</h3>
-                <p>Skincare, comfort goods, everyday must-haves.</p>
+                <p>Skincare, comfort goods, everyday must-haves for a serene pregnancy journey.</p>
                 <div class="price">JMD 4,500</div>
-                <button class="btn-primary" onclick="addToCart('pregnancy_001', 'Pregnancy Glow Package', 4500, 'pregnancy-glow.jpg')">Add to Cart</button>
+                <button class="btn-primary" onclick="addToCart('pregnancy_001', 'Pregnancy Glow Package', 4500, 'Pregnancy Glow (inside box).jpg.webp')">Add to Cart</button>
             </div>
 
+            <!-- Hospital Bag Essentials - Using your original image name -->
             <div class="product-card" data-name="Hospital Bag Essentials" data-category="hospital" data-price="3800">
-                <img src="hospital-bag.jpg" alt="Hospital bag essentials" class="product-img" onerror="this.src='https://placehold.co/400x300/d48f7b/white?text=Hospital'">
+                <img src="preganncy package hospital.jpg.avif" alt="Hospital bag essentials" class="product-img" onerror="this.src='https://placehold.co/400x300/d48f7b/white?text=Hospital'">
                 <h3>Hospital Bag Essentials</h3>
-                <p>Ready for labor & delivery day.</p>
+                <p>Ready for labor & delivery day — everything you need in one bag.</p>
                 <div class="price">JMD 3,800</div>
-                <button class="btn-primary" onclick="addToCart('hospital_001', 'Hospital Bag Essentials', 3800, 'hospital-bag.jpg')">Add to Cart</button>
+                <button class="btn-primary" onclick="addToCart('hospital_001', 'Hospital Bag Essentials', 3800, 'preganncy package hospital.jpg.avif')">Add to Cart</button>
             </div>
 
+            <!-- Postpartum Recovery - Using your original image name -->
             <div class="product-card" data-name="Postpartum Recovery Package" data-category="postpartum" data-price="5200">
-                <img src="postpartum.jpg" alt="Postpartum recovery package" class="product-img" onerror="this.src='https://placehold.co/400x300/e9b6af/b45f4b?text=Postpartum'">
+                <img src="postpartum 2.jpg.webp" alt="Postpartum recovery package" class="product-img" onerror="this.src='https://placehold.co/400x300/e9b6af/b45f4b?text=Postpartum'">
                 <h3>Postpartum Recovery</h3>
-                <p>Healing & self-care after birth.</p>
+                <p>Healing & self-care after birth. Supports comfort, hygiene and healing.</p>
                 <div class="price">JMD 5,200</div>
-                <button class="btn-primary" onclick="addToCart('postpartum_001', 'Postpartum Recovery Package', 5200, 'postpartum.jpg')">Add to Cart</button>
+                <button class="btn-primary" onclick="addToCart('postpartum_001', 'Postpartum Recovery Package', 5200, 'postpartum 2.jpg.webp')">Add to Cart</button>
             </div>
 
+            <!-- Newborn Nest - Using your original image name -->
             <div class="product-card" data-name="Newborn Nest Package" data-category="newborn" data-price="6100">
-                <img src="newborn.jpg" alt="Newborn baby package" class="product-img" onerror="this.src='https://placehold.co/400x300/b0bea9/white?text=Newborn'">
+                <img src="newborn package 2.jpg" alt="Newborn baby package" class="product-img" onerror="this.src='https://placehold.co/400x300/b0bea9/white?text=Newborn'">
                 <h3>Newborn Nest</h3>
-                <p>Baby's first months essentials.</p>
+                <p>Baby's first months essentials — diapers, wipes, clothing and feeding supplies.</p>
                 <div class="price">JMD 6,100</div>
-                <button class="btn-primary" onclick="addToCart('newborn_001', 'Newborn Nest Package', 6100, 'newborn.jpg')">Add to Cart</button>
+                <button class="btn-primary" onclick="addToCart('newborn_001', 'Newborn Nest Package', 6100, 'newborn package 2.jpg')">Add to Cart</button>
             </div>
 
+            <!-- Custom Bundle - Using your original image name -->
             <div class="product-card" data-name="Custom Bundle" data-category="custom" data-price="3800">
-                <img src="custom-bundle.jpg" alt="Custom care bundle" class="product-img" onerror="this.src='https://placehold.co/400x300/e3b87c/white?text=Custom'">
+                <img src="custum bundle.jpg" alt="Custom care bundle" class="product-img" onerror="this.src='https://placehold.co/400x300/e3b87c/white?text=Custom'">
                 <h3>Custom Bundle</h3>
-                <p>Build your own package.</p>
+                <p>Build your own package — pick the items that matter most to you.</p>
                 <div class="price">From JMD 3,800</div>
-                <button class="btn-primary" onclick="addToCart('custom_001', 'Custom Bundle', 3800, 'custom-bundle.jpg')">Add to Cart</button>
+                <button class="btn-primary" onclick="addToCart('custom_001', 'Custom Bundle', 3800, 'custum bundle.jpg')">Add to Cart</button>
             </div>
 
+            <!-- Subscription Box -->
             <div class="product-card" data-name="Subscription Box" data-category="subscription" data-price="4200">
                 <img src="subscription-apps-meta.png" alt="Subscription box" class="product-img" onerror="this.src='https://placehold.co/400x300/f5d7b3/white?text=Subscription'">
                 <h3>Subscription Box</h3>
-                <p>Monthly care — coming Spring 2026!</p>
+                <p>Monthly care delivered to your door — coming Spring 2026!</p>
                 <div class="price">JMD 4,200 / month</div>
-                <button class="btn-secondary" onclick="alert('📅 Subscription boxes coming Spring 2026!')">Notify Me</button>
+                <button class="btn-secondary" onclick="alert('📅 Subscription boxes coming Spring 2026! Join our waitlist.')">Notify Me</button>
             </div>
         </div>
     </div>
@@ -180,7 +184,7 @@
             
             const resultsCount = document.getElementById('resultsCount');
             if (visibleCount === 0) {
-                resultsCount.innerHTML = '<span style="color: #d48f7b;">😔 No packages found. Try a different search!</span>';
+                resultsCount.innerHTML = '<span style="color: #d48f7b;">😔 No packages found. Try a different search or filter!</span>';
             } else {
                 resultsCount.innerHTML = `🌸 Showing ${visibleCount} beautiful package${visibleCount !== 1 ? 's' : ''} for you`;
             }
@@ -230,9 +234,17 @@
             }
         }
         
-        function handleLogout() { localStorage.removeItem('momsiesLoggedInUser'); alert('🌸 Logged out'); updateAuthSection(); updateCartCount(); }
+        function handleLogout() { 
+            localStorage.removeItem('momsiesLoggedInUser'); 
+            alert('🌸 You have been logged out. Come back soon!'); 
+            updateAuthSection(); 
+            updateCartCount(); 
+        }
         
-        document.addEventListener('DOMContentLoaded', function() { updateAuthSection(); updateCartCount(); });
+        document.addEventListener('DOMContentLoaded', function() { 
+            updateAuthSection(); 
+            updateCartCount(); 
+        });
     </script>
     
     <!-- YOUR EXISTING CHATBOT SCRIPT GOES HERE -->
