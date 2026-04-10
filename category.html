@@ -8,19 +8,10 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="style.css">
     <style>
-        .cart-count {
-            background-color: #b45f4b;
-            color: white;
-            border-radius: 50%;
-            padding: 2px 8px;
-            font-size: 12px;
-            margin-left: 5px;
-            display: none;
-        }
+        .cart-count { background-color: #b45f4b; color: white; border-radius: 50%; padding: 2px 8px; font-size: 12px; margin-left: 5px; display: none; }
         .user-greeting { display: flex; align-items: center; gap: 12px; }
         .user-name { font-weight: 500; color: #b45f4b; }
         
-        /* Search & Filter Styles */
         .search-filter-section {
             background: white;
             border-radius: 48px;
@@ -29,143 +20,28 @@
             box-shadow: 0 5px 20px rgba(0,0,0,0.03);
             border: 1px solid #f7c9c0;
         }
-        
-        .search-box {
-            display: flex;
-            gap: 12px;
-            margin-bottom: 20px;
-        }
-        
-        .search-box input {
-            flex: 1;
-            padding: 14px 20px;
-            border: 1px solid #f7c9c0;
-            border-radius: 50px;
-            font-size: 1rem;
-            font-family: inherit;
-            outline: none;
-            transition: all 0.2s;
-        }
-        
-        .search-box input:focus {
-            border-color: #d48f7b;
-            box-shadow: 0 0 0 3px rgba(212, 143, 123, 0.1);
-        }
-        
-        .search-box button {
-            background: #d48f7b;
-            border: none;
-            color: white;
-            padding: 0 28px;
-            border-radius: 50px;
-            cursor: pointer;
-            font-weight: 600;
-            transition: all 0.2s;
-        }
-        
-        .search-box button:hover {
-            background: #b45f4b;
-        }
-        
-        .filter-row {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 15px;
-            align-items: center;
-            justify-content: space-between;
-        }
-        
-        .filter-buttons {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-        }
-        
-        .filter-btn {
-            background: #f5ede6;
-            border: none;
-            padding: 8px 18px;
-            border-radius: 30px;
-            cursor: pointer;
-            font-size: 0.85rem;
-            font-weight: 500;
-            color: #5a4a40;
-            transition: all 0.2s;
-        }
-        
-        .filter-btn.active {
-            background: #d48f7b;
-            color: white;
-        }
-        
-        .filter-btn:hover {
-            background: #e9b6af;
-        }
-        
-        .price-filter {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        
-        .price-filter label {
-            font-size: 0.85rem;
-            color: #5a4a40;
-        }
-        
-        .price-filter select {
-            padding: 8px 12px;
-            border-radius: 30px;
-            border: 1px solid #f7c9c0;
-            background: white;
-            font-family: inherit;
-            cursor: pointer;
-        }
-        
-        .reset-btn {
-            background: transparent;
-            border: 1px solid #d48f7b;
-            color: #d48f7b;
-            padding: 8px 18px;
-            border-radius: 30px;
-            cursor: pointer;
-            font-size: 0.85rem;
-            transition: all 0.2s;
-        }
-        
-        .reset-btn:hover {
-            background: #d48f7b;
-            color: white;
-        }
-        
-        .results-count {
-            text-align: center;
-            margin: 20px 0;
-            color: #7e6a5e;
-            font-size: 0.9rem;
-        }
-        
-        .no-results {
-            text-align: center;
-            padding: 60px 20px;
-            background: white;
-            border-radius: 32px;
-        }
-        
-        .no-results i {
-            font-size: 3rem;
-            color: #d48f7b;
-            margin-bottom: 16px;
-        }
+        .search-box { display: flex; gap: 12px; margin-bottom: 20px; }
+        .search-box input { flex: 1; padding: 14px 20px; border: 1px solid #f7c9c0; border-radius: 50px; font-size: 1rem; font-family: inherit; outline: none; }
+        .search-box input:focus { border-color: #d48f7b; }
+        .search-box button { background: #d48f7b; border: none; color: white; padding: 0 28px; border-radius: 50px; cursor: pointer; font-weight: 600; }
+        .search-box button:hover { background: #b45f4b; }
+        .filter-row { display: flex; flex-wrap: wrap; gap: 15px; align-items: center; justify-content: space-between; }
+        .filter-buttons { display: flex; flex-wrap: wrap; gap: 10px; }
+        .filter-btn { background: #f5ede6; border: none; padding: 8px 18px; border-radius: 30px; cursor: pointer; font-size: 0.85rem; font-weight: 500; color: #5a4a40; }
+        .filter-btn.active { background: #d48f7b; color: white; }
+        .filter-btn:hover { background: #e9b6af; }
+        .price-filter select { padding: 8px 12px; border-radius: 30px; border: 1px solid #f7c9c0; background: white; cursor: pointer; }
+        .reset-btn { background: transparent; border: 1px solid #d48f7b; color: #d48f7b; padding: 8px 18px; border-radius: 30px; cursor: pointer; }
+        .reset-btn:hover { background: #d48f7b; color: white; }
+        .results-count { text-align: center; margin: 20px 0; color: #7e6a5e; font-size: 0.9rem; }
+        .no-results { text-align: center; padding: 60px 20px; background: white; border-radius: 32px; }
+        .no-results i { font-size: 3rem; color: #d48f7b; margin-bottom: 16px; }
     </style>
 </head>
 <body>
     <div class="navbar">
         <div class="container nav-flex">
-            <div class="logo">
-                <h1>🌸 Momsies</h1>
-                <p>nurture • comfort • joy</p>
-            </div>
+            <div class="logo"><h1>🌸 Momsies</h1><p>nurture • comfort • joy</p></div>
             <ul class="nav-links">
                 <li><a href="index.html">Home</a></li>
                 <li><a href="category.html">Packages</a></li>
@@ -182,25 +58,23 @@
         <h1 class="section-title" style="margin-top: 48px;">🌸 Shop by Motherhood Stage 🌸</h1>
         <p class="section-sub">Find the perfect care package for where you are in your journey.</p>
 
-        <!-- Search & Filter Section -->
         <div class="search-filter-section">
             <div class="search-box">
-                <input type="text" id="searchInput" placeholder="🔍 Search packages... (e.g., 'pregnancy', 'postpartum', 'baby')" onkeyup="filterProducts()">
+                <input type="text" id="searchInput" placeholder="🔍 Search packages... (e.g., 'pregnancy', 'postpartum')" onkeyup="filterProducts()">
                 <button onclick="filterProducts()"><i class="fas fa-search"></i> Search</button>
             </div>
             <div class="filter-row">
                 <div class="filter-buttons">
                     <button class="filter-btn active" data-category="all" onclick="filterByCategory('all')">All</button>
                     <button class="filter-btn" data-category="pregnancy" onclick="filterByCategory('pregnancy')">🤰 Pregnancy</button>
-                    <button class="filter-btn" data-category="hospital" onclick="filterByCategory('hospital')">🏥 Hospital Bag</button>
+                    <button class="filter-btn" data-category="hospital" onclick="filterByCategory('hospital')">🏥 Hospital</button>
                     <button class="filter-btn" data-category="postpartum" onclick="filterByCategory('postpartum')">💖 Postpartum</button>
                     <button class="filter-btn" data-category="newborn" onclick="filterByCategory('newborn')">👶 Newborn</button>
                     <button class="filter-btn" data-category="custom" onclick="filterByCategory('custom')">🎁 Custom</button>
                 </div>
                 <div class="price-filter">
-                    <label>💰 Price:</label>
                     <select id="priceFilter" onchange="filterProducts()">
-                        <option value="all">All Prices</option>
+                        <option value="all">💰 All Prices</option>
                         <option value="under4000">Under JMD 4,000</option>
                         <option value="4000-5000">JMD 4,000 - 5,000</option>
                         <option value="5000-6000">JMD 5,000 - 6,000</option>
@@ -214,58 +88,52 @@
         <div class="results-count" id="resultsCount"></div>
 
         <div class="product-grid" id="productGrid">
-            <!-- Pregnancy Glow -->
             <div class="product-card" data-name="Pregnancy Glow Package" data-category="pregnancy" data-price="4500">
                 <img src="pregnancy-glow.jpg" alt="Pregnancy care package" class="product-img" onerror="this.src='https://placehold.co/400x300/f7c9c0/b45f4b?text=Pregnancy'">
                 <h3>Pregnancy Glow</h3>
-                <p>Skincare, comfort goods, everyday must-haves for a serene pregnancy journey.</p>
+                <p>Skincare, comfort goods, everyday must-haves.</p>
                 <div class="price">JMD 4,500</div>
                 <button class="btn-primary" onclick="addToCart('pregnancy_001', 'Pregnancy Glow Package', 4500, 'pregnancy-glow.jpg')">Add to Cart</button>
             </div>
 
-            <!-- Hospital Bag Essentials -->
             <div class="product-card" data-name="Hospital Bag Essentials" data-category="hospital" data-price="3800">
                 <img src="hospital-bag.jpg" alt="Hospital bag essentials" class="product-img" onerror="this.src='https://placehold.co/400x300/d48f7b/white?text=Hospital'">
                 <h3>Hospital Bag Essentials</h3>
-                <p>Ready for labor & delivery day — everything you need in one bag.</p>
+                <p>Ready for labor & delivery day.</p>
                 <div class="price">JMD 3,800</div>
                 <button class="btn-primary" onclick="addToCart('hospital_001', 'Hospital Bag Essentials', 3800, 'hospital-bag.jpg')">Add to Cart</button>
             </div>
 
-            <!-- Postpartum Recovery -->
             <div class="product-card" data-name="Postpartum Recovery Package" data-category="postpartum" data-price="5200">
                 <img src="postpartum.jpg" alt="Postpartum recovery package" class="product-img" onerror="this.src='https://placehold.co/400x300/e9b6af/b45f4b?text=Postpartum'">
                 <h3>Postpartum Recovery</h3>
-                <p>Healing & self-care after birth. Supports comfort, hygiene and healing.</p>
+                <p>Healing & self-care after birth.</p>
                 <div class="price">JMD 5,200</div>
                 <button class="btn-primary" onclick="addToCart('postpartum_001', 'Postpartum Recovery Package', 5200, 'postpartum.jpg')">Add to Cart</button>
             </div>
 
-            <!-- Newborn Nest -->
             <div class="product-card" data-name="Newborn Nest Package" data-category="newborn" data-price="6100">
                 <img src="newborn.jpg" alt="Newborn baby package" class="product-img" onerror="this.src='https://placehold.co/400x300/b0bea9/white?text=Newborn'">
                 <h3>Newborn Nest</h3>
-                <p>Baby's first months essentials — diapers, wipes, clothing and feeding supplies.</p>
+                <p>Baby's first months essentials.</p>
                 <div class="price">JMD 6,100</div>
                 <button class="btn-primary" onclick="addToCart('newborn_001', 'Newborn Nest Package', 6100, 'newborn.jpg')">Add to Cart</button>
             </div>
 
-            <!-- Custom Bundle -->
             <div class="product-card" data-name="Custom Bundle" data-category="custom" data-price="3800">
                 <img src="custom-bundle.jpg" alt="Custom care bundle" class="product-img" onerror="this.src='https://placehold.co/400x300/e3b87c/white?text=Custom'">
                 <h3>Custom Bundle</h3>
-                <p>Build your own package — pick the items that matter most to you.</p>
+                <p>Build your own package.</p>
                 <div class="price">From JMD 3,800</div>
                 <button class="btn-primary" onclick="addToCart('custom_001', 'Custom Bundle', 3800, 'custom-bundle.jpg')">Add to Cart</button>
             </div>
 
-            <!-- Subscription Box -->
             <div class="product-card" data-name="Subscription Box" data-category="subscription" data-price="4200">
                 <img src="subscription-apps-meta.png" alt="Subscription box" class="product-img" onerror="this.src='https://placehold.co/400x300/f5d7b3/white?text=Subscription'">
                 <h3>Subscription Box</h3>
-                <p>Monthly care delivered to your door — coming Spring 2026!</p>
+                <p>Monthly care — coming Spring 2026!</p>
                 <div class="price">JMD 4,200 / month</div>
-                <button class="btn-secondary" onclick="alert('📅 Subscription boxes coming Spring 2026! Join our waitlist.')">Notify Me</button>
+                <button class="btn-secondary" onclick="alert('📅 Subscription boxes coming Spring 2026!')">Notify Me</button>
             </div>
         </div>
     </div>
@@ -280,7 +148,6 @@
 
     <script src="cart.js"></script>
     <script>
-        // Search and Filter Functions
         let currentCategory = 'all';
         
         function filterProducts() {
@@ -313,7 +180,7 @@
             
             const resultsCount = document.getElementById('resultsCount');
             if (visibleCount === 0) {
-                resultsCount.innerHTML = '<span style="color: #d48f7b;">😔 No packages found. Try a different search or filter!</span>';
+                resultsCount.innerHTML = '<span style="color: #d48f7b;">😔 No packages found. Try a different search!</span>';
             } else {
                 resultsCount.innerHTML = `🌸 Showing ${visibleCount} beautiful package${visibleCount !== 1 ? 's' : ''} for you`;
             }
@@ -337,8 +204,19 @@
             filterByCategory('all');
         }
         
-        // Cart Functions
-        function updateCartCountDisplay() { updateCartCount(); }
+        function updateCartCount() {
+            const cart = JSON.parse(localStorage.getItem('momsiesCart')) || [];
+            const total = cart.reduce((s, i) => s + i.quantity, 0);
+            const span = document.getElementById('cartCount');
+            if (span) {
+                if (total > 0) {
+                    span.textContent = total;
+                    span.style.display = 'inline-flex';
+                } else {
+                    span.style.display = 'none';
+                }
+            }
+        }
         
         function updateAuthSection() {
             const authSection = document.getElementById('authSection');
@@ -352,20 +230,11 @@
             }
         }
         
-        function handleLogout() {
-            localStorage.removeItem('momsiesLoggedInUser');
-            alert('🌸 You have been logged out. Come back soon!');
-            updateAuthSection();
-            updateCartCount();
-        }
+        function handleLogout() { localStorage.removeItem('momsiesLoggedInUser'); alert('🌸 Logged out'); updateAuthSection(); updateCartCount(); }
         
-        document.addEventListener('DOMContentLoaded', function() {
-            updateAuthSection();
-            updateCartCount();
-        });
+        document.addEventListener('DOMContentLoaded', function() { updateAuthSection(); updateCartCount(); });
     </script>
     
-    <!-- Your Existing Chatbot Script -->
-    <!-- (Keep your chatbot code here) -->
+    <!-- YOUR EXISTING CHATBOT SCRIPT GOES HERE -->
 </body>
 </html>
